@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مبدل هوشمند مقاله به صفحه مطالعه</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Vazirmatn', Tahoma, sans-serif; }
+    #dropzone.drag-over { background-color: #eff6ff; border-color: #2563eb; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen p-4 sm:p-6">
+
+  <div id="form-section" class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+    <h1 class="text-2xl font-bold mb-2 text-blue-900">مبدل هوشمند مقاله به صفحه مطالعه</h1>
+    <p class="text-sm text-gray-500 mb-6">
+      کاملاً سمت مرورگر — بدون سرور، بدون ارسال متن به هیچ‌جا.
+      متن خود را وارد کنید یا فایل TXT/MD را بکشید و رها کنید.
+    </p>
+
+    <form id="article-form" class="space-y-4">
+      <div>
+        <label class="block text-xs font-bold mb-1">عنوان مقاله</label>
+        <input type="text" name="title" placeholder="مثال: مبانی جامعه‌شناسی" class="w-full border rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-bold mb-1">نویسنده / ارائه‌دهنده</label>
+          <input type="text" name="author" placeholder="مثال: امین بزرگیان" class="w-full border rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1">تاریخ یا جلسه</label>
+          <input type="text" name="date" placeholder="مثال: جلسه اول - ۰۵/۰۵/۲۱" class="w-full border rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="block text-xs font-bold">نوع محتوا</label>
+        <div class="flex items-center border border-gray-200 rounded-lg p-0.5 bg-gray-50">
+          <button type="button" id="format-plain-btn">یادداشت ساده</button>
+          <button type="button" id="format-markdown-btn">مارک‌داون کامل</button>
+        </div>
+        <input type="hidden" id="format-value" value="plain">
+      </div>
+
+      <div id="dropzone" class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center text-xs text-gray-500 transition-colors cursor-pointer">
+        📄 فایل TXT یا MD را اینجا بکشید و رها کنید، یا <span class="text-blue-600 font-bold">کلیک کنید</span>
+        <input type="file" id="file-input" accept=".txt,.md,.markdown,text/plain,text/markdown" class="hidden">
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold mb-1">متن اصلی مقاله</label>
+        <textarea id="content-area" rows="12" placeholder="متن کامل یا یادداشت‌ها را اینجا بچسبانید..." class="w-full border rounded-xl p-3 text-sm leading-relaxed outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+      <button type="submit" id="generate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition shadow-sm">
+        تولید صفحه مطالعه
+      </button>
+    </form>
+  </div>
+
+  <div id="preview-section" class="hidden max-w-4xl mx-auto">
+    <div class="flex items-center justify-between mb-3 px-1">
+      <button id="back-btn" class="text-sm font-semibold text-gray-600 hover:text-blue-700 transition flex items-center gap-1">
+        → بازگشت به ویرایش
+      </button>
+      <button id="download-btn" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-xl transition shadow-sm">
+        دانلود HTML مستقل
+      </button>
+    </div>
+    <iframe id="preview-frame" class="w-full rounded-2xl border border-gray-200 shadow-sm bg-white" style="height: 85vh;"></iframe>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-multimd-table@4/dist/markdown-it-multimd-table.min.js"></script>
+  <script src="js/parser-plain.js"></script>
+  <script src="js/parser-markdown.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

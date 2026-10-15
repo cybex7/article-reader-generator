@@ -1,0 +1,20 @@
+{
+  "name": "article-reader-fetch-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker: fetch a web page and extract its pure article text as Markdown (CORS-friendly backend for the web/ static site).",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "linkedom": "^0.18.5",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
